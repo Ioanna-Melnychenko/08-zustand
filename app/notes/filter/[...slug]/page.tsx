@@ -10,6 +10,29 @@ interface NotesPageProps {
   params: Promise<{ slug: string[] }>;
 }
 
+export async function generateMetadata({ params }: NotesPageProps) {
+  const { slug } = await params;
+  return {
+    title: `Notes by tag: ${slug[0]}`,
+    description: `Filtered notes by ${slug[0]}`,
+    openGraph: {
+      title: `Notes by tag: ${slug[0]}`,
+      description: `Filtered notes by ${slug[0]}`,
+      url: `https://notehub.com/notes/${slug.join('/')}`,
+      siteName: 'NoteHub',
+      images: [
+        {
+          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+          width: 1200,
+          height: 630,
+          alt: `${slug[0]}`,
+        },
+      ],
+      type: 'website',
+    },
+  };
+}
+
 export default async function NotesPage({ params }: NotesPageProps) {
   const queryClient = new QueryClient();
   const { slug } = await params;

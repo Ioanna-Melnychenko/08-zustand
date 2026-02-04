@@ -10,6 +10,7 @@ import NoteForm from '@/components/NoteForm/NoteForm';
 import { useDebouncedCallback } from 'use-debounce';
 import NoteList from '@/components/NoteList/NoteList';
 import { fetchNotes } from '@/lib/api';
+import Link from 'next/link';
 
 interface NotesClientProps {
   tag: string;
@@ -18,7 +19,6 @@ interface NotesClientProps {
 function NotesClient({ tag }: NotesClientProps) {
   const [page, setPage] = useState(1);
   const [searchValue, setSearchValue] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const queryKey = tag
     ? ['notes', { page, searchValue, tag }]
     : ['notes', { page, searchValue }];
@@ -29,8 +29,6 @@ function NotesClient({ tag }: NotesClientProps) {
     refetchOnMount: false,
   });
   const totalPages = data?.totalPages || 0;
-
-  const closeModal = () => setIsModalOpen(false);
 
   const handleSearch = useDebouncedCallback((value: string) => {
     setSearchValue(value);
@@ -44,16 +42,11 @@ function NotesClient({ tag }: NotesClientProps) {
         {totalPages > 1 && (
           <Pagination totalPages={totalPages} page={page} setPage={setPage} />
         )}
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
+        <Link className={css.button} href="/notes/action/create">
           Create note +
-        </button>
+        </Link>
       </header>
       {isSuccess && data.notes.length > 0 && <NoteList notes={data.notes} />}
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <NoteForm onClose={closeModal} />
-        </Modal>
-      )}
     </div>
   );
 }
