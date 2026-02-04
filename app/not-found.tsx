@@ -3,11 +3,11 @@ import css from './Home.module.css';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Page not-found',
-  description: 'This page is displayed when the rout is not found',
+  title: 'Page Not Found',
+  description: 'This page is displayed when the route is not found',
   openGraph: {
-    title: 'Notes Hub',
-    description: 'My best Notes Hub',
+    title: 'Notes Hub Not Found',
+    description: 'Page Not Found',
     url: '',
     siteName: 'NoteHub',
     images: [
