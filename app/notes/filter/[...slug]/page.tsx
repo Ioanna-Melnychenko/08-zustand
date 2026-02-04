@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: NotesPageProps) {
     openGraph: {
       title: `Notes by tag: ${slug[0]}`,
       description: `Filtered notes by ${slug[0]}`,
-      url: `https://notehub.com/notes/${slug.join('/')}`,
+      url: `https://08-zustand-kappa-amber.vercel.app/notes/filter/${slug.join('/')}`,
       siteName: 'NoteHub',
       images: [
         {

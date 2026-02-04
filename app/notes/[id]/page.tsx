@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: NoteDetailsProps) {
     openGraph: {
       title: `Note: ${note.title}`,
       description: note.content.slice(0, 100),
-      url: `https://notehub.com/notes/${id}`,
+      url: `https://08-zustand-kappa-amber.vercel.app/notes/${id}`,
       siteName: 'NoteHub',
       images: [
         {
